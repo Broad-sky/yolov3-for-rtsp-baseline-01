@@ -14,10 +14,10 @@ import datetime
 from io import BytesIO
 
 def connectFtp():
-    HOST = "39.107.27.110"
-    port = 1801
-    user = "alarmpic"
-    passwd = "pic12#$"
+    HOST = ""
+    port = 0
+    user = ""
+    passwd = ""
     ftp = ftplib.FTP()  # 实例化FTP对象
     ftp.connect(HOST, port)
     ftp.login(user, passwd)  # 登录
@@ -104,7 +104,7 @@ def detect(save_txt=False, save_img=False, stream_img=False):
         nowTime = datetime.datetime.now()
         strNowIime = nowTime.strftime("%Y-%m-%d %H:%M:%S")
         res_data = {
-            "deviceIp": "221.11.78.118",
+            "deviceIp": "",
             "channelID": '0',  # 通道id,对应摄像机通道号
             "presetNum": '32',  # 预置位编号（如获取不到，请传0）
             "alarmTime": strNowIime,  # 告警时间
@@ -166,10 +166,6 @@ def detect(save_txt=False, save_img=False, stream_img=False):
                     labels.append(classes[int(cls)])
                     print("xyxy: ",int(xyxy[0]), int(xyxy[1])), (int(xyxy[2]), int(xyxy[3]))
                     plot_one_box(xyxy, im0, label=label, color=colors[int(cls)])
-                    # cv2.imshow("demo", im0)
-                    # res_data = {"im0":im0,"label":label}
-                    # r = requests.post("http://monitor.wetestx.com/camera/view",data = res_data)
-                    # print("r.content,r.status_code: ",r.content,r.status_code)
 
         print('%sDone. (%.3fs)' % (s, time.time() - t))
         # Stream results
@@ -191,14 +187,13 @@ def detect(save_txt=False, save_img=False, stream_img=False):
             res_data["aDAlarmResult"]["alarmCount"] =len(res_data["aDAlarmResult"]["alarmItemList"])
             print(res_data)
             headers = {
-                # "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36",
                 "Content-Type": "application/json",
                 "charset": "UTF-8",
                 "keep": "alive",
                 # "Accept-Encoding":"gzip, deflate"
             }
             data = json.dumps(res_data)
-            r = requests.post("http://ai.eupup.com/api/alarm.json",json = data,headers = headers)
+            r = requests.post("",json = data,headers = headers)
             print("r.status_code: ",r.status_code)
             with open("log.txt","w") as fs:
                 fs.write(str(res_data))
@@ -239,9 +234,8 @@ def detect(save_txt=False, save_img=False, stream_img=False):
 
     print('Done. (%.3fs)' % (time.time() - t0))
 
-# rtsp://admin:admin123@172.16.11.219:554/ch0.liv  办公室摄像头
 if __name__ == '__main__':
-    url_rtsp = 'rtsp://admin:hik123456@221.11.78.118:554/h264/ch0/main/av_stream'
+    url_rtsp = ''
     parser = argparse.ArgumentParser()
     parser.add_argument('--cfg', type=str, default='cfg/yolov3.cfg', help='cfg file path')
     parser.add_argument('--data', type=str, default='data/coco.data', help='coco.data file path')
