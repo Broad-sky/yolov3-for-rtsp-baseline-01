@@ -1,5 +1,5 @@
 ﻿1、该开源代码对视频进行目标检测可达到20fps
-2、执行命令为：python detect.py --weights weights/yolov3.pt  --source C:\Users\spszhr\Desktop\CS75plus.mp4
-		python detect.py --weights weights/yolov3.pt  --source rtsp://admin:Admin12345@1.85.217.49:8554/h264/ch0/main/av_stream
-		python detect.py --weights weights/yolov3.pt  --source rtsp://admin:admin123@172.16.11.219:554/ch0.liv
+2、执行命令为：python detect.py --weights weights/yolov3.pt  --source C:\Users\***\Desktop\***.mp4
+		python detect.py --weights weights/yolov3.pt  --source rtsp://***:****@1.85.217.49:88554/h264/ch0/main/av_stream
+		python detect.py --weights weights/yolov3.pt  --source rtsp://***:****@172.16.11.219:***/ch0.liv
 3、开源代码地址：https://github.com/ultralytics/yolov3
